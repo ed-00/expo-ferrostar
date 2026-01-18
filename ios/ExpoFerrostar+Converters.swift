@@ -10,7 +10,7 @@ extension UserLocation {
       coordinates: self.coordinates.toFerrostar(),
       horizontalAccuracy: self.horizontalAccuracy,
       courseOverGround: self.courseOverGround?.toFerrostar(),
-      timestamp: Date(), // TODO: Parse timestamp string
+      timestamp: ISO8601DateFormatter().date(from: self.timestamp) ?? Date(),
       speed: self.speed?.toFerrostar()
     )
   }
@@ -82,7 +82,7 @@ extension RouteStep {
       instruction: self.instruction,
       visualInstructions: self.visualInstructions.map { $0.toFerrostar() },
       spokenInstructions: self.spokenInstructions.map { $0.toFerrostar() },
-      annotations: self.annotation // Mapped from 'annotation' (Record) to 'annotations' (SDK)
+      annotations: self.annotations
     )
   }
 }
@@ -177,7 +177,7 @@ extension FerrostarCore.RouteStep {
       instruction: self.instruction,
       visualInstructions: self.visualInstructions.map { $0.toRecord() },
       spokenInstructions: self.spokenInstructions.map { $0.toRecord() },
-      annotation: self.annotations ?? []
+      annotations: self.annotations ?? []
     )
   }
 }

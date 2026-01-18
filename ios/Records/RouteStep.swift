@@ -23,5 +23,5 @@ struct RouteStep: Record {
   var spokenInstructions: [SpokenInstruction] = []
   
   @Field
-  var annotation: [String] = []
+  var annotations: [String] = []
 }

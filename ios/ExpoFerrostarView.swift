@@ -40,10 +40,12 @@ class ExpoFerrostarView: ExpoView {
     let locationProvider: LocationProvider
     if options.locationMode == .simulated {
       locationProvider = SimulatedLocationProvider()
+    } else if options.locationMode == .fused || options.locationMode == .default_ {
+      // iOS CoreLocation is inherently fused.
+      locationProvider = CoreLocationProvider(activityType: .automotiveNavigation, allowBackgroundLocationUpdates: true)
     } else {
-      // Default to CoreLocation
-      // TODO: Handle 'fused' vs 'default' if distinct, or configure CoreLocation options
-      locationProvider = CoreLocationProvider(activityType: .automotiveNavigation, allowBackgroundLocationUpdates: true) 
+       // Fallback
+      locationProvider = CoreLocationProvider(activityType: .automotiveNavigation, allowBackgroundLocationUpdates: true)
     }
 
     // Initialize Core
@@ -125,17 +127,7 @@ class ExpoFerrostarView: ExpoView {
     // Map config
     let config: FerrostarCore.NavigationControllerConfig?
     if let options = options {
-       config = FerrostarCore.NavigationControllerConfig(
-          stepAdvance: FerrostarCore.RelativeLineStringDistance(
-            minimumHorizontalAccuracy: options.stepAdvance.minimumHorizontalAccuracy,
-            automaticAdvanceDistance: options.stepAdvance.automaticAdvanceDistance
-          ),
-          routeDeviationTracking: FerrostarCore.StaticThreshold(
-            minimumHorizontalAccuracy: options.routeDeviationTracking.minimumHorizontalAccuracy,
-            maxAcceptableDeviation: options.routeDeviationTracking.maxAcceptableDeviation
-          ),
-          courseFiltering: .snapToRoute // TODO: Map enum
-       )
+       config = mapCoreConfig(options)
     } else {
        config = nil
     }
@@ -162,16 +154,15 @@ class ExpoFerrostarView: ExpoView {
             minimumHorizontalAccuracy: config.routeDeviationTracking.minimumHorizontalAccuracy,
             maxAcceptableDeviation: config.routeDeviationTracking.maxAcceptableDeviation
           ),
-          courseFiltering: .snapToRoute
+          courseFiltering: FerrostarCore.CourseFiltering(rawValue: config.snappedLocationCourseFiltering.rawValue) ?? .snapToRoute
       )
   }
 
   func stopNavigation(_ stopLocationUpdates: Bool?) {
-     core?.stopNavigation() // TODO: Handle stopLocationUpdates arg if supported
+     core?.stopNavigation() 
   }
 
   func replaceRoute(_ route: Route, _ options: NavigationControllerConfig?) {
-     // TODO: Implement replaceRoute logic with config mapping similar to startNavigation
      guard let core = core else { return }
      let config = mapCoreConfig(options)
      try? core.replaceRoute(route: route.toFerrostar(), config: config)

@@ -8,5 +8,5 @@ struct NavigationControllerConfig: Record {
   var routeDeviationTracking: StaticThreshold = StaticThreshold()
   
   @Field
-  var courseFiltering: CourseFiltering = .SNAP_TO_ROUTE
+  var snappedLocationCourseFiltering: CourseFiltering = .SNAP_TO_ROUTE
 }

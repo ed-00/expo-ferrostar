@@ -5,5 +5,5 @@ struct FerrostarNavigationOptions: Record {
   var styleUrl: String?
   
   @Field
-  var snapUserLocationToRoute: Bool?
+  var snapUserLocationRoute: Bool?
 }
