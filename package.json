@@ -18,16 +18,17 @@
   "keywords": [
     "react-native",
     "expo",
+    "expo-module",
     "expo-ferrostar",
     "ExpoFerrostar"
   ],
-  "repository": "https://github.com/bjtrounson/expo-ferrostar",
+  "repository": "https://github.com/ed-00/expo-ferrostar",
   "bugs": {
-    "url": "https://github.com/bjtrounson/expo-ferrostar/issues"
+    "url": "https://github.com/ed-00/expo-ferrostar/issues"
   },
-  "author": "Benjamin Trounson <btrounson@outlook.co.nz> (https://github.com/bjtrounson)",
+  "author": "Benjamin Trounson <btrounson@outlook.co.nz> (https://github.com/ed-00/expo-ferrostar)",
   "license": "MIT",
-  "homepage": "https://github.com/bjtrounson/expo-ferrostar#readme",
+  "homepage": "https://github.com/ed-00/expo-ferrostar#readme",
   "dependencies": {},
   "devDependencies": {
     "@types/react": "~18.3.12",

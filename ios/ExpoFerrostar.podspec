@@ -10,9 +10,9 @@ Pod::Spec.new do |s|
   s.license        = package['license']
   s.author         = package['author']
   s.homepage       = package['homepage']
-  s.platforms      = { :ios => '16.0' } # Ferrostar likely requires 16+ or 15+. 16 is safe for modern nav.
+  s.platforms      = { :ios => '15.1' }
   s.swift_version  = '5.7'
-  s.source         = { git: 'https://github.com/bjtrounson/expo-ferrostar' }
+  s.source         = { git: 'https://github.com/ed-00/expo-ferrostar.git' }
   s.static_framework = true
 
   s.dependency 'ExpoModulesCore'

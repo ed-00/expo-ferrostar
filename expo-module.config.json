@@ -1,10 +1,10 @@
 {
   "platforms": [
-    "apple",
+    "ios",
     "android",
     "web"
   ],
-  "apple": {
+  "ios": {
     "modules": [
       "ExpoFerrostarModule"
     ]

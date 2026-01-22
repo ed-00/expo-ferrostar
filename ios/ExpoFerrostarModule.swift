@@ -4,6 +4,10 @@ import ExpoModulesCore
 public class ExpoFerrostarModule: Module {
   public func definition() -> ModuleDefinition {
     Name("ExpoFerrostar")
+    
+    OnCreate {
+      print("[ExpoFerrostar] Module created")
+    }
 
     View(ExpoFerrostarView.self) {
       Events("onNavigationStateChange")

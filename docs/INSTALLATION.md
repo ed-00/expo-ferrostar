@@ -42,6 +42,12 @@ Ferrostar is distributed as a Swift Package. Since Expo Modules rely on CocoaPod
     - Select `FerrostarCore` and `FerrostarMapLibreUI`.
     - Ensure "Embed & Sign" is selected.
 
+5.  **Troubleshooting Build Errors**:
+    - If you encounter a `Sandbox: bash deny file-read-data` error:
+        - Go to **Build Settings** in Xcode.
+        - Search for `User Script Sandboxing`.
+        - Set it to **No** for both the **Project** and the **Target**.
+
 ## Step 3: Android Configuration
 
 Android configuration is generally automatic via Gradle.
